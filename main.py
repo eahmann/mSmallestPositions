@@ -1,7 +1,7 @@
 class mSmallestPositions():
     # class scope variables
     list = []
-    amount = 0
+    m = 0
     positions = []
 
     def __init__(self):
@@ -27,8 +27,8 @@ class mSmallestPositions():
         # Get number of positions from user
         while True:
             try:
-                self.amount = int(input("Enter number of smallest positions to print\n"))
-                if self.amount > len(self.list):
+                self.m = int(input("Enter number of smallest positions to print\n"))
+                if self.m > len(self.list):
                     raise ValueError
                 else:
                     break
@@ -36,12 +36,9 @@ class mSmallestPositions():
                 print("Invalid input. Enter only integer number")
 
     def findPositions(self):
-        # Find 'self.amount' number of positions 
-        for i in range(self.amount):       
-            self.positions.append(self.indexOfMin(self.list) + 1)
-
-
-        print("\n\nPostion(s) of", self.amount, "smallest values:", self.positions)
+        # Find 'm' number of positions 
+        for i in range(self.m):       
+            self.positions.append(self.indexOfMin() + 1)
 
     def indexOfMin(self):
         # Make a list of remaining indices. Exclude those that are already added to 'self.positons'
@@ -55,5 +52,8 @@ class mSmallestPositions():
             if self.list[i] < self.list[index]:
                 index = i
         return index
+
+    def printPositions(self):
+        print("\n\Position(s) of", self.m, "smallest values:", self.positions)
 
 msp = mSmallestPositions()
