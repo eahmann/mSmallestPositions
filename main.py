@@ -15,46 +15,56 @@ class mSmallestPositions():
         Precondition: None 
         Postcondition: len(list) > 0, m <= len(list)
         """
-        print("Enter numbers followed by 'Enter' key\nPress 'Enter' key again when finished")
+
+        print("Input list of numbers. Enter numbers followed by 'Enter' key\nPress 'Enter' key again when finished")
+         # Get user input for list of values
         while True:
             userInput = input("> ")
             if userInput:
                 # Validate the user enters only integers
                 try:
-                    # Append valid ipput to 'self.list'
+                    # Try to cast input to integer to validate input and append valid ipput to 'self.list'
                     self.list.append(int(userInput))
                 except:
                     print("ERROR: Invalid input. Enter only integer number")
-            elif not self.list: # Validate the list is not empty
+             # Validate the list is not empty
+            elif not self.list:
                 print("ERROR: You must enter at least 1 integer")
             else:
-                break # Valid input ends the while loop
+                # Valid input ends the while loop
+                break
 
-        while True: # Get number of positions from user
+        # Get number of positions from user
+        while True: 
+            # Validate the user enters only integers
             try:
-                self.m = int(input("Enter number of smallest positions to print\n> ")) # get user input for 'm' and try to cast it to integer validate input
-                if self.m > len(self.list): # Check that the number does not exceed the number of items in the list
+                 # get user input for 'm' and try to cast it to integer validate input
+                self.m = int(input("Enter number of smallest positions to find\n> "))
+                # Check that the number does not exceed the number of items in the list
+                if self.m > len(self.list): 
                     print("ERROR: Number must not exceed number of elements in list")
                 else:
-                    break # Valid input ends the while loop
+                    # Valid input ends the while loop
+                    break
             except:
                 print("ERROR: Invalid input. Enter only integer number")
 
     def findPositions(self):
         """
         Find 'm' number of positions 
-        Precondition: 
-        Postcondition:  
+        Precondition: self.m > 0
+        Postcondition: 'self.postions' contains m number of elements 
         """
 
         for i in range(self.m): # for 'm' number of iterations
+            # Append result from indexOfMin + 1 to list of positons
             self.positions.append(self.indexOfMin() + 1)
 
     def indexOfMin(self):               
         """
         Find index of smallest integer in list
-        Precondition: 
-        Postcondition:  
+        Precondition: len(list) > 0
+        Postcondition: The index of the first min value is returned from remaing unused indices
         """
 
         # Make a list of remaining indices. Exclude those that are already added to 'self.positons'
@@ -73,8 +83,19 @@ class mSmallestPositions():
         # return the index of the min value
         return index
 
+    def postionMap(self):
+        """
+        Prints to screen a formatted output of positions and and values
+        Precondition: len(list) > 0
+        Postcondition: The positions and values are printed to screen
+        """
+        print("\nposition : value")
+        # Create a dictionary from positons and values and print it to screen
+        for position,value in dict(zip([i + 1 for i in range(len(self.list))], self.list)).items(): print(position, ':', value)
+        # Need to have a return here otherwise it will print 'None' in the __str__ method
+        return "\n"
+
     def __str__(self):
-        return f"\nPositions:      {[i + 1 for i in range(len(self.list))]}\nList of values: {self.list} \nPosition(s) of {self.m} smallest values: {self.positions}\nIndex of min iterations: {self.min_counter}"
-        
+        return f"{self.postionMap()}Position(s) of {self.m} smallest values: {self.positions}\nIndex of min iterations: {self.min_counter}"
 
 print(mSmallestPositions())
