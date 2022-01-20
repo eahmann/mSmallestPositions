@@ -16,7 +16,7 @@ class mSmallestPositions():
         Postcondition: len(list) > 0, m <= len(list)
         """
 
-        print("Input list of numbers. Enter numbers followed by 'Enter' key\nPress 'Enter' key again when finished")
+        print("Input numbers. Type each number followed by 'Enter' key\nPress 'Enter' key again when finished")
          # Get user input for list of values
         while True:
             userInput = input("> ")
