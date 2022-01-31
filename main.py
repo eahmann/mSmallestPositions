@@ -4,9 +4,11 @@ class mSmallestPositions():
     m = 5 # amount of positions to find
     positions = [] # positions of min values in list
     min_counter = 0 # iteration counter for indexOfMin
+    remaining_indices = []
 
     def __init__(self):
         # self.getUserInput()
+        self.remaining_indices = [i for i in range(len(self.list))]
         self.findPositions()
 
     def getUserInput(self):
@@ -62,18 +64,18 @@ class mSmallestPositions():
         """
 
         # Make a list of remaining indices. Exclude those that are already added to 'self.positons'
-        remaining_indices = [ind for ind in range(len(self.list)) if (ind + 1) not in self.positions]
+        # remaining_indices = [ind for ind in range(len(self.list)) if (ind + 1) not in self.positions]
 
         # Set 'index' to first remaing index
-        index = remaining_indices[0]
+        index = self.remaining_indices[0]
 
         # Loop to find first index of smalled value. 'index' contains the first value, so we use 'remaining_indices[1:]' to slice it from the list
-        for i in remaining_indices[1:]:
+        for i in self.remaining_indices[1:]:
             # If any value is less than the value at 'self.list[index]', then update the index to reflect the position of the lowest value
             if self.list[i] < self.list[index]:
                 index = i
             self.min_counter += 1
-        return index
+        return self.remaining_indices.pop(index)
 
     def postionMap(self):
         """
