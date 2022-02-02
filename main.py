@@ -1,12 +1,12 @@
 class mSmallestPositions():
     # class scope variables
-    list = [x for x in range(20)] # list of values from user
-    m = 5 # amount of positions to find
+    list = [] # list of values from user
+    m = 0 # amount of positions to find
     positions = [] # positions of min values in list
     min_counter = 0 # iteration counter for indexOfMin
 
     def __init__(self):
-        # self.getUserInput()
+        self.getUserInput()
         self.findPositions()
 
     def getUserInput(self):
