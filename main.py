@@ -1,4 +1,10 @@
 class mSmallestPositions():
+    '''
+    This program takes keyboard input for a list of integers, 
+    and an integer m. Then it will display the positions of 
+    the m smallest values in the list.
+    '''
+
     # class scope variables
     list = [] # list of values from user
     m = 0 # amount of positions to find
